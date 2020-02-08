@@ -10,11 +10,20 @@ Install npm packages:
 yarn install -S scottmunday84/combineReducers
 ```
 
+If you want to use this with React hooks, install my react-connect package too:
+
+```
+yarn install -S scottmunday84/react-connect
+```
+
+You can also use this in tandem with consumers. Use what you feel is more appropriate.
+
 And to use:
 ```jsx harmony
 import combineReducers from 'combineReducers';
 import React, {createContext, useReducer} from 'react';
 
+/* First Reducer */
 const firstReducer = (state, action) => {
   switch (action.type) {
     case 'ACTION_FOO':
@@ -27,6 +36,7 @@ const firstReducer = (state, action) => {
   }
 };
 
+/* Second Reducer */
 const secondReducer = (state, action) => {
   switch (action.type) {
     case 'ACTION_BAR':
@@ -39,7 +49,7 @@ const secondReducer = (state, action) => {
   }
 };
 
-export const store = createContext(null);
+export const store = createContext(null);  // Create an empty context; will be replaced with the 
 const {Provider} = store;
 
 const initialState = {
@@ -52,6 +62,7 @@ const initialState = {
 };
 
 const StoreProvider = ({children}) => {
+  // Use useReducer hook with combineReducers() function
   const [state, dispatch] = useReducer(combineReducers({
     firstReducer,
     secondReducer
@@ -74,6 +85,7 @@ import StoreProvider from "./reducers/store";
 import Layout from "./components/Layout";
 
 let App = () => {
+  // Wrap component with StoreProvider
   return (
     <StoreProvider>
       <Layout />
@@ -86,31 +98,37 @@ export default App;
 
 And work from the combined context:
 ```jsx harmony
+import {connect} from 'react-connect';
 import React, {useContext} from 'react';
 import {store} from "../reducers/store";
 
 const Layout = () => {
-  const {dispatch, ...context} = init(useContext(store));
-  const _foo = payload => dispatch({type: 'ACTION_FOO', payload});
-  const _bar = payload => dispatch({type: 'ACTION_BAR', payload});
-
+  const {props, actions} = connect(
+    useContext(store), 
+    mapState, 
+    mapActions);
+  
   return (
     <div>
-      <button onClick={_foo(!context.foo)}>Cal Foo</button>
-      <button onClick={_foo(!context.bar)}>Call Bar</button>
+      <button onClick={actions.foo(!context.foo)}>Cal Foo</button>
+      <button onClick={actions.bar(!context.bar)}>Call Bar</button>
     </div>
   );
 };
 
-const init = store => {
-  const {dispatch, state: {...state}} = store;
-
+const mapState = state => {
   return {
-    dispatch,
     foo: state.firstReducer.foo,
     bar: state.secondReducer.bar
   };
 };
+
+const mapActions = (state, dispatch) => {
+  return {
+    foo: payload => dispatch({type: 'ACTION_FOO', payload}),
+    bar: payload => dispatch({type: 'ACTION_BAR', payload}) 
+  };
+}
 
 export default Layout;
 ```
