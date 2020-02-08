@@ -1,0 +1,9 @@
+{
+  "name": "combineReducers",
+  "version": "1.0.0",
+  "main": "lib.js",
+  "license": "MIT",
+  "devDependencies": {
+    "jsdoc": "^3.6.3"
+  }
+}
