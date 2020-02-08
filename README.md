@@ -7,13 +7,13 @@ A simple shim for combining reducers. Built for React, but it doesn't have to be
 Install npm packages:
 
 ```
-yarn install -S scottmunday84/combineReducers
+yarn install -S @scottmunday84/combineReducers
 ```
 
 If you want to use this with React hooks, install my react-connect package too:
 
 ```
-yarn install -S scottmunday84/react-connect
+yarn install -S @scottmunday84/react-connect
 ```
 
 You can also use this in tandem with consumers. Use what you feel is more appropriate.
