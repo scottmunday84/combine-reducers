@@ -1,10 +1,12 @@
 {
   "name": "@scottmunday84/combine-reducers",
   "description": "A simple shim for combining reducers. Built for React, but it doesn't have to be.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/lib.js",
   "license": "MIT",
   "author": "Scott Munday <scottmunday84@gmail.com>",
+  "homepage": "https://github.com/scottmunday84/combine-reducers",
+  "url": "https://github.com/scottmunday84/combine-reducers/issues",
   "devDependencies": {
     "jsdoc": "^3.6.3"
   }

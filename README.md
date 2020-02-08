@@ -16,11 +16,11 @@ If you want to use this with React hooks, install my react-connect package too:
 yarn install -S @scottmunday84/react-connect
 ```
 
-You can also use this in tandem with consumers. Use what you feel is more appropriate.
+You can also use this in tandem with consumers. Use what you feel is most appropriate.
 
 And to use:
 ```jsx harmony
-import combineReducers from 'combine-reducers';
+import combineReducers from '@scottmunday84/combine-reducers';
 import React, {createContext, useReducer} from 'react';
 
 /* First Reducer */
@@ -49,7 +49,8 @@ const secondReducer = (state, action) => {
   }
 };
 
-export const store = createContext(null);  // Create an empty context; will be replaced with the 
+// Context is empty; will be replaced by initialState later
+export const store = createContext(null);   
 const {Provider} = store;
 
 const initialState = {
@@ -99,7 +100,7 @@ export default App;
 And work from the combined context:
 ```jsx harmony
 import {store} from "../reducers/store";
-import {connect} from 'react-connect';
+import {connect} from '@scottmunday84/react-connect';
 import React, {useContext} from 'react';
 
 const Layout = () => {
