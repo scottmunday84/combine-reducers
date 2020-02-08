@@ -110,8 +110,8 @@ const Layout = () => {
   
   return (
     <div>
-      <button onClick={actions.foo(!context.foo)}>Cal Foo</button>
-      <button onClick={actions.bar(!context.bar)}>Call Bar</button>
+      <button onClick={actions.foo(!props.foo)}>Cal Foo</button>
+      <button onClick={actions.bar(!props.bar)}>Call Bar</button>
     </div>
   );
 };
