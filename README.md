@@ -80,9 +80,9 @@ export default StoreProvider;
 
 Use the StoreProvider (like normal): 
 ```jsx harmony
-import React from 'react';
-import StoreProvider from "./reducers/store";
 import Layout from "./components/Layout";
+import StoreProvider from "./reducers/store";
+import React from 'react';
 
 let App = () => {
   // Wrap component with StoreProvider
@@ -98,9 +98,9 @@ export default App;
 
 And work from the combined context:
 ```jsx harmony
+import {store} from "../reducers/store";
 import {connect} from 'react-connect';
 import React, {useContext} from 'react';
-import {store} from "../reducers/store";
 
 const Layout = () => {
   const mapState = state => {
