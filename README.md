@@ -103,10 +103,19 @@ import React, {useContext} from 'react';
 import {store} from "../reducers/store";
 
 const Layout = () => {
-  const {props, actions} = connect(
-    useContext(store), 
-    mapState, 
-    mapActions);
+  const mapState = state => {
+    return {
+      foo: state.firstReducer.foo,
+      bar: state.secondReducer.bar
+    };
+  };
+  const mapActions = (state, dispatch) => {
+    return {
+      foo: payload => dispatch({type: 'ACTION_FOO', payload}),
+      bar: payload => dispatch({type: 'ACTION_BAR', payload}) 
+    };
+  };
+  const [props, actions] = connect(useContext(store))(mapState, mapActions);
   
   return (
     <div>
@@ -116,19 +125,6 @@ const Layout = () => {
   );
 };
 
-const mapState = state => {
-  return {
-    foo: state.firstReducer.foo,
-    bar: state.secondReducer.bar
-  };
-};
-
-const mapActions = (state, dispatch) => {
-  return {
-    foo: payload => dispatch({type: 'ACTION_FOO', payload}),
-    bar: payload => dispatch({type: 'ACTION_BAR', payload}) 
-  };
-}
 
 export default Layout;
 ```
