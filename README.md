@@ -1,4 +1,4 @@
-# combineReducers (v1.0.0)
+# combine-reducers (v1.0.0)
 
 A simple shim for combining reducers. Built for React, but it doesn't have to be.
 
@@ -7,7 +7,7 @@ A simple shim for combining reducers. Built for React, but it doesn't have to be
 Install npm packages:
 
 ```
-yarn install -S @scottmunday84/combineReducers
+yarn install -S @scottmunday84/combine-reducers
 ```
 
 If you want to use this with React hooks, install my react-connect package too:
@@ -20,7 +20,7 @@ You can also use this in tandem with consumers. Use what you feel is more approp
 
 And to use:
 ```jsx harmony
-import combineReducers from 'combineReducers';
+import combineReducers from 'combine-reducers';
 import React, {createContext, useReducer} from 'react';
 
 /* First Reducer */
