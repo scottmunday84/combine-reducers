@@ -110,7 +110,7 @@ const Layout = () => {
       bar: state.secondReducer.bar
     };
   };
-  const mapActions = (state, dispatch) => {
+  const mapActions = (dispatch, state) => {
     return {
       foo: payload => dispatch({type: 'ACTION_FOO', payload}),
       bar: payload => dispatch({type: 'ACTION_BAR', payload}) 
