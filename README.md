@@ -1,4 +1,4 @@
-# combine-reducers (v1.0.0)
+# combine-reducers [![npm version](https://badge.fury.io/js/%40scottmunday84%2Fcombine-reducers.svg)](https://badge.fury.io/js/%40scottmunday84%2Fcombine-reducers) 
 
 A simple shim for combining reducers. Built for React, but it doesn't have to be.
 
