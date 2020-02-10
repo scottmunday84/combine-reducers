@@ -99,13 +99,15 @@ And work from the combined context:
 ```jsx harmony
 import {store} from "../reducers/store";
 import Consumer from '@scottmunday84/react-consumer';
-import React, {useContext} from 'react';
+import React from 'react';
 
 const Layout = () => {
   const map = ({state, dispatch}) => {
+    const {firstReducer, secondReducer} = state;
+
     return {
-      foo: state.firstReducer.foo,
-      bar: state.secondReducer.bar,
+      foo: firstReducer.foo,
+      bar: secondReducer.bar,
       dispatchFoo: payload => dispatch('ACTION_FOO', payload),
       dispatchBar: payload => dispatch('ACTION_BAR', payload)
     };
