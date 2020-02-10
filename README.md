@@ -10,13 +10,11 @@ Install npm packages:
 yarn install -S @scottmunday84/combine-reducers
 ```
 
-If you want to use this with React hooks, install my react-connect package too:
+If you want to use this with React hooks, you should install my react-consumer package too:
 
 ```
-yarn install -S @scottmunday84/react-connect
+yarn install -S @scottmunday84/react-consumer
 ```
-
-You can also use this in tandem with consumers. Use what you feel is most appropriate.
 
 And to use:
 ```jsx harmony
@@ -100,30 +98,25 @@ export default App;
 And work from the combined context:
 ```jsx harmony
 import {store} from "../reducers/store";
-import {connect} from '@scottmunday84/react-connect';
+import Consumer from '@scottmunday84/react-consumer';
 import React, {useContext} from 'react';
 
 const Layout = () => {
-  const mapState = state => {
+  const map = ({state, dispatch}) => {
     return {
       foo: state.firstReducer.foo,
-      bar: state.secondReducer.bar
+      bar: state.secondReducer.bar,
+      dispatchFoo: payload => dispatch('ACTION_FOO', payload),
+      dispatchBar: payload => dispatch('ACTION_BAR', payload)
     };
   };
-  const mapActions = (dispatch, state) => {
-    return {
-      foo: payload => dispatch({type: 'ACTION_FOO', payload}),
-      bar: payload => dispatch({type: 'ACTION_BAR', payload}) 
-    };
-  };
-  const [props, actions] = connect(useContext(store))(mapState, mapActions);
   
   return (
-    <div>
-      <button onClick={actions.foo(!props.foo)}>Cal Foo</button>
-      <button onClick={actions.bar(!props.bar)}>Call Bar</button>
-    </div>
-  );
+    <Consumer store={store} map={map}>
+      {({foo, bar, dispatchFoo, dispatchBar}) => [
+          <button onClick={() => dispatchFoo(!foo)}>Cal Foo</button>,
+          <button onClick={() => dispatchBar(!bar)}>Call Bar</button>]}
+    </Consumer>);
 };
 
 
